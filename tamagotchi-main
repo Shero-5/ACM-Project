@@ -26,22 +26,18 @@ public class tomogachi extends Application {
 	public void start(Stage primaryStage) {
 		
 		GridPane pane = new GridPane();
-		
+		// Sets the background image
 		Image image = new Image("https://t4.ftcdn.net/jpg/02/77/10/87/360_F_277108701_1JAbS8jg7Gw42dU6nz7sF72bWiCm3VMv.jpg");
-		ImageView yep = new ImageView(image);
+		ImageView background = new ImageView(image);
+		// Sets background dimensions
+		background.setFitHeight(HEIGHT);
+		background.setPreserveRatio(true);
+		// Adds background to the pane
+		pane.add(background, 0, 0);
 		
-		yep.setFitHeight(HEIGHT);
-		yep.setPreserveRatio(true);
-		
-		Text txt = new Text("Test");
-		Text txt2 = new Text("Test");
-		
-		
-		pane.add(yep, 0, 0);
 		
 		
 		Scene scene = new Scene(pane, WIDTH, HEIGHT);
-		
 		
 		primaryStage.setResizable(false);
 	    // Sets the stage details
