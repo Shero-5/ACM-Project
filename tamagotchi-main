@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,6 +25,8 @@ public class tomogachi extends Application {
 	
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
+	
+	protected Font font = new Font("Georgia", 40);
 	
 	public void start(Stage primaryStage) {
 		
@@ -44,6 +48,7 @@ public class tomogachi extends Application {
 		Image starter3 = new Image("https://png.pngtree.com/png-clipart/20250523/original/pngtree-golden-retriever-puppy-dog-sitting-looking-happy-friendly-pet-png-image_21058512.png");
 		ImageView st3 = new ImageView(starter3);
 		
+		// Sets starter image sizes
 		double starterWidth = 250;
 		double starterHeight = 250;
 		
@@ -59,17 +64,41 @@ public class tomogachi extends Application {
 		st3.setFitHeight(starterHeight);
 		st3.setPreserveRatio(true);
 		
+		// Creates frame for starter images
+		Rectangle frame1 = new Rectangle(starterHeight, starterWidth);
+		frame1.setFill(Color.WHITE);
+		frame1.setStroke(Color.BLACK);
+		Rectangle frame2 = new Rectangle(starterHeight, starterWidth);
+		frame2.setFill(Color.WHITE);
+		frame2.setStroke(Color.BLACK);
+		Rectangle frame3 = new Rectangle(starterHeight, starterWidth);
+		frame3.setFill(Color.WHITE);
+		frame3.setStroke(Color.BLACK);
+		StackPane st1Frame = new StackPane(frame1, st1);
+		StackPane st2Frame = new StackPane(frame2, st2);
+		StackPane st3Frame = new StackPane(frame3, st3);
+		
+		
 		// Creates the buttons to select a starter
 		Button bt1 = new Button("Starter 1");
 		Button bt2 = new Button("Starter 2");
 		Button bt3 = new Button("Starter 3");
+		// Sets fonts
+		bt1.setFont(font);
+		bt2.setFont(font);
+		bt3.setFont(font);
 		
+		// Creates the pane that will be in the front
 		GridPane frontPane = new GridPane();
-		frontPane.setPadding(new Insets(50));
+		// Sets frontPane's spacing
+		frontPane.setPadding(new Insets(200, 200, 200, 200));
+		frontPane.setHgap(200);
+		frontPane.setVgap(50);
+		
 		// adds images
-		frontPane.add(st1, 0, 0);
-		frontPane.add(st2, 1, 0);
-		frontPane.add(st3, 2, 0);
+		frontPane.add(st1Frame, 0, 0);
+		frontPane.add(st2Frame, 1, 0);
+		frontPane.add(st3Frame, 2, 0);
 		// adds buttons beneath the images
 		frontPane.add(bt1, 0, 1);
 		frontPane.add(bt2, 1, 1);
