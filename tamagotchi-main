@@ -30,6 +30,9 @@ public class tomogachi extends Application {
 	
 	protected Font font = new Font("Georgia", 40);
 	private static Pets selectedPet;
+
+	public static final double starterWidth = 250;
+	public static final double starterHeight = 250;
 	
 	public void start(Stage primaryStage) {
 		
