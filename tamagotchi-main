@@ -152,6 +152,7 @@ public class tomogachi extends Application {
 		ImageView starter = new ImageView(pet);
 		Image anvil = new Image("https://www.onlygfx.com/wp-content/uploads/2021/12/vintage-anvil.png");
 		ImageView anvilView = new ImageView(anvil);
+		Duration time = new Duration(700);
 		
 		starter.setFitHeight(starterHeight);
 		starter.setFitWidth(starterWidth);
@@ -161,7 +162,24 @@ public class tomogachi extends Application {
 		anvilView.setPreserveRatio(true);
 		
 		VBox squish = new VBox(anvilView, starter);
+		squish.setAlignment(Pos.CENTER);
 		
+		TranslateTransition fall = new TranslateTransition();
+		fall.setNode(anvilView);
+		fall.setDuration(time);
+		fall.setByY(starterHeight);
+		
+		ScaleTransition pancake = new ScaleTransition();
+		pancake.setNode(starter);
+		pancake.setDuration(time);
+		pancake.setToY(0.1);
+		
+		TranslateTransition adjust = new TranslateTransition(time, starter);
+		adjust.setByY(starterHeight * 0.5);
+		
+		fall.play();
+		pancake.play();
+		adjust.play();
 		
 		Scene scene = new Scene(squish, WIDTH, HEIGHT);
 		return scene;
