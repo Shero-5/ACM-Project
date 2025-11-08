@@ -226,7 +226,7 @@ public class tomogachi extends Application {
 				starterImage.setTranslateX(currPos);
 				if (currPos > 400 || currPos < -400) {
 					speed = -speed;
-					starterImage.setScaleX(-1);
+					starterImage.setScaleX(starterImage.getScaleX() * -1);
 				}
 			}
 		};
