@@ -157,8 +157,8 @@ public class tomogachi extends Application {
 		VBox squish = new VBox(anvilView, starter);
 		
 		
-		Scene scene = new Scene(squish);
-		return null;
+		Scene scene = new Scene(squish, WIDTH, HEIGHT);
+		return scene;
 	}
 	
 	public static void main(String[] args) {
