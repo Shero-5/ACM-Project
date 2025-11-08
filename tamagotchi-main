@@ -133,17 +133,16 @@ public class tomogachi extends Application {
 
 		// Event Handlers for the buttons
 		bt1.setOnAction(e -> {
-			// placeholder
-			System.out.println("1");
-			primaryStage.setScene(anvilDeath(starter1));
+			selectedPet = new IceCreamBunny("tempName");
+			primaryStage.setScene(mainScene(primaryStage));
 		});
 		bt2.setOnAction(e -> {
-			// placeholder
-			System.out.println("2");
+			selectedPet = new Gun("tempName");
+			primaryStage.setScene(mainScene(primaryStage));
 		});
 		bt3.setOnAction(e -> {
-			// placeholder
-			System.out.println("3");
+			selectedPet = new Puppy("tempName");
+			primaryStage.setScene(mainScene(primaryStage));
 		});
 	}
 	
@@ -167,7 +166,21 @@ public class tomogachi extends Application {
 		Scene scene = new Scene(squish, WIDTH, HEIGHT);
 		return scene;
 	}
-	
+
+	public static Scene mainScene(Stage stage) {
+		ImageView starterImage = new ImageView();
+		if (selectedPet instanceof IceCreamBunny) {
+			starterImage.setImage(new Image("https://images.vexels.com/media/users/3/291355/isolated/preview/d57f402edfa16f981c7bdef1dc1b518a-cute-bunny-jumping-character.png"));
+		} else if (selectedPet instanceof Gun) {
+			starterImage.setImage(new Image("https://png.pngtree.com/png-vector/20231031/ourmid/pngtree-revolutionary-war-flintlock-pistol-vintage-png-image_10411050.png"));
+		} else if (selectedPet instanceof Puppy) {
+			starterImage.setImage(new Image("https://png.pngtree.com/png-clipart/20250523/original/pngtree-golden-retriever-puppy-dog-sitting-looking-happy-friendly-pet-png-image_21058512.png"));
+		}
+		VBox layout = new VBox(starterImage);
+		Scene scene = new Scene(layout, WIDTH, HEIGHT);
+		return scene;
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
