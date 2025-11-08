@@ -27,6 +27,10 @@ public class tomogachi extends Application {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	
+	// Sets starter image sizes
+	public static final double starterWidth = 250;
+	public static final double starterHeight = 250;
+	
 	protected Font font = new Font("Georgia", 40);
 	
 	public void start(Stage primaryStage) {
@@ -49,10 +53,6 @@ public class tomogachi extends Application {
 		ImageView st2 = new ImageView(starter2);
 		Image starter3 = new Image("https://png.pngtree.com/png-clipart/20250523/original/pngtree-golden-retriever-puppy-dog-sitting-looking-happy-friendly-pet-png-image_21058512.png");
 		ImageView st3 = new ImageView(starter3);
-		
-		// Sets starter image sizes
-		double starterWidth = 250;
-		double starterHeight = 250;
 		
 		st1.setFitWidth(starterWidth);
 		st1.setFitHeight(starterHeight);
@@ -153,6 +153,13 @@ public class tomogachi extends Application {
 		ImageView starter = new ImageView(pet);
 		Image anvil = new Image("https://www.onlygfx.com/wp-content/uploads/2021/12/vintage-anvil.png");
 		ImageView anvilView = new ImageView(anvil);
+		
+		starter.setFitHeight(starterHeight);
+		starter.setFitWidth(starterWidth);
+		starter.setPreserveRatio(true);
+		anvilView.setFitHeight(starterHeight);
+		anvilView.setFitWidth(starterWidth);
+		anvilView.setPreserveRatio(true);
 		
 		VBox squish = new VBox(anvilView, starter);
 		
