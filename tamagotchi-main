@@ -89,19 +89,6 @@ public class tomogachi extends Application {
 		bt1.setFont(font);
 		bt2.setFont(font);
 		bt3.setFont(font);
-		// Event Handlers for the buttons
-		bt1.setOnAction(e -> {
-			//placeholder
-			System.out.println("1");
-		});
-		bt2.setOnAction(e -> {
-			//placeholder
-			System.out.println("2");
-		});
-		bt3.setOnAction(e -> {
-			//placeholder
-			System.out.println("3");
-		});
 		
 		
 		// Creates the pane that will be in the front
@@ -139,10 +126,39 @@ public class tomogachi extends Application {
 		Scene scene = new Scene(stack1, WIDTH, HEIGHT);
 		
 		primaryStage.setResizable(false);
-	    // Sets the stage details
-	    primaryStage.setTitle("Tamagachi");
-	    primaryStage.setScene(scene);
-	    primaryStage.show(); 
+		// Sets the stage details
+		primaryStage.setTitle("Tamagachi");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
+		// Event Handlers for the buttons
+		bt1.setOnAction(e -> {
+			// placeholder
+			System.out.println("1");
+			primaryStage.setScene(anvilDeath(starter1));
+		});
+		bt2.setOnAction(e -> {
+			// placeholder
+			System.out.println("2");
+		});
+		bt3.setOnAction(e -> {
+			// placeholder
+			System.out.println("3");
+		});
+	}
+	
+	public static Scene anvilDeath(Image pet) {
+		System.out.print("working");
+		
+		ImageView starter = new ImageView(pet);
+		Image anvil = new Image("https://www.onlygfx.com/wp-content/uploads/2021/12/vintage-anvil.png");
+		ImageView anvilView = new ImageView(anvil);
+		
+		VBox squish = new VBox(anvilView, starter);
+		
+		
+		Scene scene = new Scene(squish);
+		return null;
 	}
 	
 	public static void main(String[] args) {
