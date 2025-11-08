@@ -158,7 +158,10 @@ public class tomogachi extends Application {
 		ImageView starter = new ImageView(pet);
 		Image anvil = new Image("https://www.onlygfx.com/wp-content/uploads/2021/12/vintage-anvil.png");
 		ImageView anvilView = new ImageView(anvil);
+		// Sets how long the animation lasts
 		Duration time = new Duration(500);
+		Image blood = new Image("https://png.pngtree.com/png-vector/20230430/ourmid/pngtree-bright-blood-splatter-png-image_6747633.png");
+		ImageView bloodView = new ImageView(blood);
 		
 		starter.setFitHeight(starterHeight);
 		starter.setFitWidth(starterWidth);
@@ -167,27 +170,56 @@ public class tomogachi extends Application {
 		anvilView.setFitWidth(starterWidth);
 		anvilView.setPreserveRatio(true);
 		
-		VBox squish = new VBox(anvilView, starter);
+		StackPane bloodStack = new StackPane(starter, bloodView);
+		
+		// Node to have the anvil above the pet
+		VBox squish = new VBox(anvilView, bloodStack);
 		squish.setAlignment(Pos.CENTER);
 		
+		// Animation to have the anvil fall
 		TranslateTransition fall = new TranslateTransition();
 		fall.setNode(anvilView);
 		fall.setDuration(time);
-		fall.setByY(starterHeight);
+		fall.setByY(starterHeight*1);
 		
+		// Animation to have the starter squish
 		ScaleTransition pancake = new ScaleTransition();
-		pancake.setNode(starter);
+		pancake.setNode(bloodStack);
 		pancake.setDuration(time);
 		pancake.setToY(0.1);
 		
-		TranslateTransition adjust = new TranslateTransition(time, starter);
-		adjust.setByY(starterHeight * 0.5);
+		// Animation to slightly adjust the starter down as they get squished so it looks natural
+		TranslateTransition adjust = new TranslateTransition(time.add(Duration.millis(100)), bloodStack);
+		adjust.setByY(starterHeight * 0.3);
+		
+		//Animation to make the blood appear
+		FadeTransition bloodAppear = new FadeTransition(time.add(Duration.millis(400)), bloodView);
+		bloodAppear.setFromValue(0.0);
+		bloodAppear.setToValue(0.9);
+		bloodAppear.play();
+		
+		// Makes the background image
+		Image background = new Image("https://media.istockphoto.com/id/1208303049/vector/vector-medieval-prison-cell-game-background.jpg?s=612x612&w=0&k=20&c=0vU3xeVvnQAnZhk88UlojhqRkgCnZSYTomIhtwI0zbg=");
+		ImageView bg = new ImageView(background);
+		bg.setFitWidth(WIDTH);
+		bg.setPreserveRatio(true);
+		
+		// Makes the blood that will cover the screen
+		Image bloodDrip = new Image("https://www.textures4photoshop.com/tex/thumbs/realistic-dripping-blood-png-with-transparent-background-228.png");
+		ImageView drip = new ImageView(bloodDrip);
+		FadeTransition dripAppear = new FadeTransition(time.add(Duration.millis(1000)), drip);
+		dripAppear.setFromValue(0.0);
+		dripAppear.setToValue(0.9);
+		dripAppear.play();
+		
+		
+		StackPane last = new StackPane(bg, squish, drip);
 		
 		fall.play();
 		pancake.play();
 		adjust.play();
 		
-		Scene scene = new Scene(squish, WIDTH, HEIGHT);
+		Scene scene = new Scene(last, WIDTH, HEIGHT);
 		return scene;
 	}
 	
